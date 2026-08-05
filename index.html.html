@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Paul T. Hughes — Commercial Strategy / Product Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue-deep:   #0A1F35;
+    --blue-mid:    #0E2A47;
+    --blue-line:   #2E4A68;
+    --cyan:        #6EC6FF;
+    --cyan-dim:    #3E7FA8;
+    --paper:       #EDF1F5;
+    --paper-dim:   #B9C6D4;
+    --amber:       #F2A93B;
+    --ink:         #10131A;
+
+    --font-display: 'Big Shoulders Display', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  .pth-root{
+    background: var(--blue-deep);
+    color: var(--paper);
+    font-family: var(--font-body);
+    line-height:1.55;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  .pth-root, .pth-root *{ box-sizing:border-box; }
+
+  /* ---------- blueprint grid backdrop ---------- */
+  .pth-grid{
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(110,198,255,0.055) 0 1px, transparent 1px 96px),
+      repeating-linear-gradient(90deg, rgba(110,198,255,0.055) 0 1px, transparent 1px 96px),
+      repeating-linear-gradient(0deg, rgba(110,198,255,0.09) 0 1px, transparent 1px 24px),
+      repeating-linear-gradient(90deg, rgba(110,198,255,0.09) 0 1px, transparent 1px 24px);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .pth-section{
+    position:relative;
+    z-index:1;
+    max-width:1180px;
+    margin:0 auto;
+    padding: 64px 32px;
+  }
+
+  /* corner crosshair marks — engineering drawing convention */
+  .pth-crossmarks{
+    position:absolute; inset:18px;
+    pointer-events:none;
+    z-index:2;
+    border:1px solid rgba(110,198,255,0.18);
+  }
+  .pth-crossmarks::before, .pth-crossmarks::after{
+    content:""; position:absolute; width:14px; height:14px;
+    border-top:1px solid var(--cyan-dim); border-left:1px solid var(--cyan-dim);
+  }
+  .pth-crossmarks::before{ top:-1px; left:-1px; }
+  .pth-crossmarks::after{ bottom:-1px; right:-1px; border-top:none; border-left:none; border-bottom:1px solid var(--cyan-dim); border-right:1px solid var(--cyan-dim); }
+
+  .pth-eyebrow{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--cyan);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:18px;
+  }
+  .pth-eyebrow::before{
+    content:""; width:22px; height:1px; background:var(--cyan-dim);
+  }
+
+  /* ---------- HERO ---------- */
+  .pth-hero{
+    min-height:100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    position:relative;
+    padding-top:96px; padding-bottom:64px;
+  }
+  .pth-hero-inner{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:48px;
+    align-items:center;
+  }
+  .pth-name{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:clamp(48px, 8vw, 96px);
+    line-height:0.92;
+    letter-spacing:-0.01em;
+    color:var(--paper);
+    margin:0 0 6px 0;
+    text-transform:uppercase;
+  }
+  .pth-role{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(18px, 2.4vw, 26px);
+    color:var(--cyan);
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    margin:0 0 22px 0;
+  }
+  .pth-thesis{
+    max-width:46ch;
+    font-size:16.5px;
+    color:var(--paper-dim);
+    margin-bottom:34px;
+  }
+  .pth-cta-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .pth-btn{
+    font-family:var(--font-mono);
+    font-size:13px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:13px 22px;
+    border-radius:2px;
+    text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s ease, background .15s ease, color .15s ease;
+    border:1px solid var(--cyan-dim);
+  }
+  .pth-btn:focus-visible{ outline:2px solid var(--amber); outline-offset:2px; }
+  .pth-btn--solid{ background:var(--cyan); color:var(--blue-deep); border-color:var(--cyan); font-weight:600; }
+  .pth-btn--solid:hover{ transform:translateY(-2px); background:var(--paper); }
+  .pth-btn--ghost{ color:var(--paper); }
+  .pth-btn--ghost:hover{ transform:translateY(-2px); border-color:var(--paper); }
+
+  /* title block, bottom right of hero — engineering drawing convention */
+  .pth-titleblock{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--paper-dim);
+    border:1px solid var(--blue-line);
+    background:rgba(110,198,255,0.03);
+    max-width:340px;
+    margin-top:40px;
+  }
+  .pth-titleblock-row{
+    display:flex; justify-content:space-between; gap:10px;
+    padding:8px 12px;
+    border-bottom:1px solid var(--blue-line);
+  }
+  .pth-titleblock-row:last-child{ border-bottom:none; }
+  .pth-titleblock-row span:first-child{ color:var(--cyan-dim); letter-spacing:.05em; }
+  .pth-titleblock-row span:last-child{ color:var(--paper); text-align:right; }
+
+  /* hero schematic */
+  .pth-schematic{ width:100%; height:auto; }
+  .pth-schematic .pth-path{
+    fill:none; stroke:var(--cyan); stroke-width:1.4;
+    stroke-dasharray: 600; stroke-dashoffset:600;
+    animation: pth-draw 2.4s ease forwards;
+  }
+  .pth-schematic .pth-path.d2{ animation-delay:.25s; }
+  .pth-schematic .pth-path.d3{ animation-delay:.5s; }
+  .pth-schematic .pth-path.d4{ animation-delay:.75s; }
+  .pth-schematic .pth-node circle{ fill:var(--blue-deep); stroke:var(--cyan); stroke-width:1.4; }
+  .pth-schematic .pth-node.pulse circle.core{
+    fill:var(--amber); stroke:none;
+    animation: pth-pulse 2.6s ease-in-out infinite;
+  }
+  .pth-schematic text{
+    font-family:var(--font-mono); font-size:9.5px; fill:var(--paper-dim);
+    letter-spacing:.04em; text-transform:uppercase;
+  }
+  @keyframes pth-draw{ to{ stroke-dashoffset:0; } }
+  @keyframes pth-pulse{ 0%,100%{ opacity:.55; } 50%{ opacity:1; } }
+
+  .pth-scrolldown{
+    position:absolute; bottom:26px; left:50%; transform:translateX(-50%);
+    font-family:var(--font-mono); font-size:10.5px; color:var(--cyan-dim);
+    letter-spacing:.15em; text-transform:uppercase;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+  }
+  .pth-scrolldown span{ width:1px; height:26px; background:linear-gradient(var(--cyan-dim), transparent); animation:pth-scrollpulse 1.8s ease-in-out infinite; }
+  @keyframes pth-scrollpulse{ 0%,100%{ opacity:.3; } 50%{ opacity:1; } }
+
+  /* ---------- shared section head ---------- */
+  .pth-sec-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    border-bottom:1px solid var(--blue-line);
+    padding-bottom:16px; margin-bottom:36px; gap:20px; flex-wrap:wrap;
+  }
+  .pth-sec-title{
+    font-family:var(--font-display); font-weight:700;
+    font-size:clamp(28px, 4vw, 40px);
+    text-transform:uppercase; letter-spacing:-0.005em;
+    color:var(--paper); margin:0;
+  }
+  .pth-sec-tag{
+    font-family:var(--font-mono); font-size:11.5px; color:var(--cyan-dim);
+    text-align:right;
+  }
+
+  /* ---------- about ---------- */
+  .pth-about-grid{ display:grid; grid-template-columns: 1.3fr 1fr; gap:56px; align-items:start; }
+  .pth-about-text p{ font-size:17px; color:var(--paper); margin:0 0 18px 0; }
+  .pth-about-text p .hl{ color:var(--cyan); }
+  .pth-about-note{
+    font-family:var(--font-mono); font-size:12px; color:var(--paper-dim);
+    border-left:2px solid var(--cyan-dim); padding-left:16px; line-height:1.7;
+  }
+
+  /* ---------- capabilities legend ---------- */
+  .pth-legend{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--blue-line);
+    border:1px solid var(--blue-line);
+  }
+  .pth-legend-item{
+    background:var(--blue-deep); padding:24px 22px; min-height:150px;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .pth-legend-num{ font-family:var(--font-mono); font-size:11px; color:var(--cyan-dim); }
+  .pth-legend-icon{ width:30px; height:30px; }
+  .pth-legend-icon svg{ width:100%; height:100%; }
+  .pth-legend-title{ font-family:var(--font-display); font-weight:700; font-size:18px; text-transform:uppercase; color:var(--paper); letter-spacing:.01em; }
+  .pth-legend-sub{ font-size:13px; color:var(--paper-dim); }
+
+  /* ---------- case studies ---------- */
+  .pth-sheet{
+    border:1px solid var(--blue-line);
+    margin-bottom:24px;
+    background:linear-gradient(180deg, rgba(110,198,255,0.025), transparent 40%);
+    position:relative;
+  }
+  .pth-sheet-head{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:16px 24px; border-bottom:1px solid var(--blue-line);
+    font-family:var(--font-mono); font-size:11.5px; color:var(--cyan-dim);
+    letter-spacing:.06em; text-transform:uppercase;
+  }
+  .pth-sheet-body{ padding:28px 24px 30px; display:grid; grid-template-columns: 1fr 1.6fr; gap:34px; }
+  .pth-sheet-title{
+    font-family:var(--font-display); font-weight:700; font-size:26px;
+    color:var(--paper); text-transform:uppercase; line-height:1.05; margin:0 0 10px 0;
+  }
+  .pth-sheet-context{ font-size:13px; color:var(--cyan); margin-bottom:4px; font-weight:600; }
+  .pth-sheet-org{ font-size:13px; color:var(--paper-dim); }
+  .pth-sheet-col-label{
+    font-family:var(--font-mono); font-size:10.5px; color:var(--cyan-dim);
+    text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px; display:block;
+  }
+  .pth-sheet-desc{ font-size:14.5px; color:var(--paper); margin:0 0 18px 0; }
+  .pth-sheet-outcome{
+    font-size:14px; color:var(--paper-dim);
+    border-top:1px dashed var(--blue-line); padding-top:14px;
+  }
+  .pth-sheet-outcome strong{ color:var(--amber); font-weight:600; }
+  .pth-tagrow{ display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
+  .pth-tag{
+    font-family:var(--font-mono); font-size:10.5px; color:var(--paper-dim);
+    border:1px solid var(--blue-line); padding:4px 9px; border-radius:2px;
+  }
+
+  /* ---------- timeline ---------- */
+  .pth-timeline{ position:relative; padding-left:28px; }
+  .pth-timeline::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--blue-line); }
+  .pth-tl-item{ position:relative; padding-bottom:34px; }
+  .pth-tl-item:last-child{ padding-bottom:0; }
+  .pth-tl-dot{
+    position:absolute; left:-28px; top:3px; width:11px; height:11px;
+    border-radius:50%; border:1.5px solid var(--cyan); background:var(--blue-deep);
+  }
+  .pth-tl-item.current .pth-tl-dot{ background:var(--amber); border-color:var(--amber); }
+  .pth-tl-date{ font-family:var(--font-mono); font-size:11.5px; color:var(--cyan-dim); margin-bottom:4px; }
+  .pth-tl-role{ font-family:var(--font-display); font-weight:700; font-size:19px; color:var(--paper); text-transform:uppercase; }
+  .pth-tl-org{ font-size:13.5px; color:var(--paper-dim); }
+
+  /* ---------- education ---------- */
+  .pth-edu-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  .pth-edu-card{ border:1px solid var(--blue-line); padding:20px 22px; }
+  .pth-edu-deg{ font-family:var(--font-display); font-weight:700; font-size:17px; color:var(--paper); text-transform:uppercase; margin-bottom:6px; }
+  .pth-edu-org{ font-size:13px; color:var(--cyan); margin-bottom:4px; }
+  .pth-edu-meta{ font-family:var(--font-mono); font-size:11px; color:var(--paper-dim); }
+
+  /* ---------- footer / contact ---------- */
+  .pth-footer{ padding-top:20px; }
+  .pth-footer-inner{
+    border:1px solid var(--blue-line); padding:40px 36px;
+    display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;
+    background:rgba(110,198,255,0.03);
+  }
+  .pth-footer-title{ font-family:var(--font-display); font-weight:800; font-size:clamp(26px,4vw,38px); color:var(--paper); text-transform:uppercase; margin:0 0 6px 0; }
+  .pth-footer-sub{ color:var(--paper-dim); font-size:14.5px; max-width:42ch; }
+  .pth-footer-links{ display:flex; flex-direction:column; gap:10px; font-family:var(--font-mono); font-size:13px; }
+  .pth-footer-links a{ color:var(--paper); text-decoration:none; border-bottom:1px solid var(--blue-line); padding-bottom:2px; transition:color .15s, border-color .15s; }
+  .pth-footer-links a:hover{ color:var(--cyan); border-color:var(--cyan); }
+  .pth-endmark{ text-align:center; font-family:var(--font-mono); font-size:10.5px; color:var(--blue-line); letter-spacing:.2em; padding:26px 0 8px; text-transform:uppercase; }
+
+  /* ---------- reveal on scroll ---------- */
+  .pth-reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .pth-reveal.pth-in{ opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .pth-schematic .pth-path{ animation:none; stroke-dashoffset:0; }
+    .pth-schematic .pth-node.pulse circle.core{ animation:none; opacity:1; }
+    .pth-scrolldown span{ animation:none; }
+    .pth-reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 860px){
+    .pth-hero-inner{ grid-template-columns:1fr; }
+    .pth-about-grid{ grid-template-columns:1fr; gap:28px; }
+    .pth-legend{ grid-template-columns:1fr 1fr; }
+    .pth-sheet-body{ grid-template-columns:1fr; gap:18px; }
+    .pth-edu-grid{ grid-template-columns:1fr; }
+    .pth-footer-inner{ flex-direction:column; align-items:flex-start; }
+  }
+  @media (max-width: 520px){
+    .pth-legend{ grid-template-columns:1fr; }
+    .pth-section{ padding:48px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="pth-root">
+  <div class="pth-grid"></div>
+
+  <!-- ================= HERO ================= -->
+  <section class="pth-hero">
+    <div class="pth-crossmarks"></div>
+    <div class="pth-section" style="padding-top:0; padding-bottom:0;">
+      <div class="pth-eyebrow">Commercial Strategy — Product Marketing</div>
+      <div class="pth-hero-inner">
+        <div>
+          <h1 class="pth-name">Paul T.<br/>Hughes</h1>
+          <p class="pth-role">Positioning · Pipeline · Data Storytelling</p>
+          <p class="pth-thesis">Ten years turning technical, industrial-grade products into revenue across Alberta's energy and manufacturing sectors — now applying an MBA in analytics, data storytelling, and AI to make that instinct repeatable.</p>
+          <div class="pth-cta-row">
+            <a class="pth-btn pth-btn--solid" href="#work">View Case Studies</a>
+            <a class="pth-btn pth-btn--ghost" href="mailto:paulhughes925@gmail.com">Email Me</a>
+            <a class="pth-btn pth-btn--ghost" href="https://www.linkedin.com/in/paul-t-hughes-502290201/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+          <div class="pth-titleblock">
+            <div class="pth-titleblock-row"><span>Based</span><span>Calgary, AB</span></div>
+            <div class="pth-titleblock-row"><span>Experience</span><span>10+ Yrs B2B Commercial</span></div>
+            <div class="pth-titleblock-row"><span>Credential</span><span>MBA in Progress — Haskayne</span></div>
+            <div class="pth-titleblock-row"><span>Sheet</span><span>Portfolio — 2026</span></div>
+          </div>
+        </div>
+
+        <div>
+          <svg class="pth-schematic" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schematic diagram connecting positioning, pipeline, data and stakeholders">
+            <path class="pth-path" d="M210 60 L210 150" />
+            <path class="pth-path d2" d="M210 150 L90 230" />
+            <path class="pth-path d3" d="M210 150 L330 230" />
+            <path class="pth-path d4" d="M90 230 L90 320 M330 230 L330 320 M90 320 L330 320" />
+
+            <g class="pth-node pulse">
+              <circle cx="210" cy="60" r="26" />
+              <circle class="core" cx="210" cy="60" r="6" />
+            </g>
+            <text x="210" y="26" text-anchor="middle">Positioning</text>
+
+            <g class="pth-node"><circle cx="210" cy="150" r="20" /></g>
+            <text x="210" y="118" text-anchor="middle">Market Fit</text>
+
+            <g class="pth-node"><circle cx="90" cy="230" r="22" /></g>
+            <text x="90" y="200" text-anchor="middle">Pipeline</text>
+
+            <g class="pth-node"><circle cx="330" cy="230" r="22" /></g>
+            <text x="330" y="200" text-anchor="middle">Data / AI</text>
+
+            <g class="pth-node pulse"><circle cx="90" cy="320" r="18" /><circle class="core" cx="90" cy="320" r="5" /></g>
+            <text x="90" y="352" text-anchor="middle">Accounts</text>
+
+            <g class="pth-node pulse"><circle cx="330" cy="320" r="18" /><circle class="core" cx="330" cy="320" r="5" /></g>
+            <text x="330" y="352" text-anchor="middle">Revenue</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="pth-scrolldown"><span></span>Scroll</div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="pth-section pth-reveal" id="about">
+    <div class="pth-sec-head">
+      <h2 class="pth-sec-title">Thesis</h2>
+      <div class="pth-sec-tag">Sheet 01 / About</div>
+    </div>
+    <div class="pth-about-grid">
+      <div class="pth-about-text">
+        <p>Most of my career has been spent selling things that are genuinely hard to sell — industrial equipment, energy infrastructure, technical solutions with buying committees stretching from the <span class="hl">plant floor to the VP's office</span>. That work taught me how technical products actually earn trust, one account at a time.</p>
+        <p>My MBA is teaching me how to turn that instinct into something more repeatable: <span class="hl">prescriptive analytics</span> for pricing and resource decisions, <span class="hl">Tableau</span> for turning account data into a story a room believes, and hands-on work with <span class="hl">generative AI</span> for building and positioning technical products.</p>
+        <p>This portfolio lives in the overlap — case studies that mix real commercial results with MBA projects where I did the positioning, market analysis, and storytelling work product marketing actually requires.</p>
+      </div>
+      <div class="pth-about-note">
+        NOTE — This is a general-purpose portfolio, not tuned to one industry. The underlying skill set — positioning, account strategy, stakeholder analysis, and data-backed storytelling — is built to transfer across B2B technical, industrial, and SaaS environments alike.
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CAPABILITIES ================= -->
+  <section class="pth-section pth-reveal">
+    <div class="pth-sec-head">
+      <h2 class="pth-sec-title">Capabilities</h2>
+      <div class="pth-sec-tag">Sheet 02 / Legend</div>
+    </div>
+    <div class="pth-legend">
+
+      <div class="pth-legend-item">
+        <div class="pth-legend-num">A</div>
+        <div class="pth-legend-icon"><svg viewBox="0 0 30 30"><path d="M4 22 L14 10 L20 16 L26 6" stroke="#6EC6FF" stroke-width="1.6" fill="none"/><circle cx="26" cy="6" r="2.2" fill="#F2A93B"/></svg></div>
+        <div class="pth-legend-title">Positioning &amp; Messaging</div>
+        <div class="pth-legend-sub">Translating technical products into value propositions a buying committee acts on.</div>
+      </div>
+
+      <div class="pth-legend-item">
+        <div class="pth-legend-num">B</div>
+        <div class="pth-legend-icon"><svg viewBox="0 0 30 30"><rect x="4" y="14" width="6" height="10" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><rect x="12" y="8" width="6" height="16" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><rect x="20" y="4" width="6" height="20" fill="none" stroke="#6EC6FF" stroke-width="1.6"/></svg></div>
+        <div class="pth-legend-title">Pipeline &amp; Account Strategy</div>
+        <div class="pth-legend-sub">Building and defending named-account pipelines through renewals and expansion.</div>
+      </div>
+
+      <div class="pth-legend-item">
+        <div class="pth-legend-num">C</div>
+        <div class="pth-legend-icon"><svg viewBox="0 0 30 30"><circle cx="15" cy="15" r="4" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><circle cx="6" cy="6" r="3" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><circle cx="24" cy="6" r="3" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><circle cx="6" cy="24" r="3" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><circle cx="24" cy="24" r="3" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><path d="M15 11 L8 8 M19 11 L22 8 M15 19 L8 22 M19 19 L22 22" stroke="#6EC6FF" stroke-width="1.2"/></svg></div>
+        <div class="pth-legend-title">Stakeholder Intelligence</div>
+        <div class="pth-legend-sub">Mapping regulatory, ESG, and organizational risk into a strategy stakeholders trust.</div>
+      </div>
+
+      <div class="pth-legend-item">
+        <div class="pth-legend-num">D</div>
+        <div class="pth-legend-icon"><svg viewBox="0 0 30 30"><path d="M4 24 L4 4 M4 24 L26 24" stroke="#6EC6FF" stroke-width="1.6" fill="none"/><path d="M8 20 L13 12 L18 16 L24 6" stroke="#F2A93B" stroke-width="1.8" fill="none"/></svg></div>
+        <div class="pth-legend-title">Data Storytelling</div>
+        <div class="pth-legend-sub">Tableau-based visualization that turns pipeline and market data into an exec-ready narrative.</div>
+      </div>
+
+      <div class="pth-legend-item">
+        <div class="pth-legend-num">E</div>
+        <div class="pth-legend-icon"><svg viewBox="0 0 30 30"><rect x="4" y="4" width="22" height="22" rx="2" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><path d="M4 12 L26 12 M4 20 L26 20 M12 4 L12 26" stroke="#6EC6FF" stroke-width="1"/></svg></div>
+        <div class="pth-legend-title">Cross-Functional GTM</div>
+        <div class="pth-legend-sub">Coordinating sales, ops, and product to move complex, multi-stakeholder deals forward.</div>
+      </div>
+
+      <div class="pth-legend-item">
+        <div class="pth-legend-num">F</div>
+        <div class="pth-legend-icon"><svg viewBox="0 0 30 30"><path d="M15 3 L26 9 L26 21 L15 27 L4 21 L4 9 Z" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><circle cx="15" cy="15" r="4" fill="none" stroke="#F2A93B" stroke-width="1.6"/></svg></div>
+        <div class="pth-legend-title">AI-Enabled Product Thinking</div>
+        <div class="pth-legend-sub">Hands-on with generative AI tooling for prototyping and positioning new product concepts.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= CASE STUDIES ================= -->
+  <section class="pth-section pth-reveal" id="work">
+    <div class="pth-sec-head">
+      <h2 class="pth-sec-title">Case Studies</h2>
+      <div class="pth-sec-tag">Sheet 03 / Work Sample</div>
+    </div>
+
+    <!-- Sheet 1 -->
+    <div class="pth-sheet">
+      <div class="pth-sheet-head"><span>Sheet 1 of 4</span><span>GTM &amp; Positioning</span></div>
+      <div class="pth-sheet-body">
+        <div>
+          <div class="pth-sheet-context">MBA Team Project — ENTI 633, Generative AI for MBAs</div>
+          <h3 class="pth-sheet-title">HireGuard</h3>
+          <div class="pth-sheet-org">AI-powered employment contract risk triage for Alberta employers</div>
+        </div>
+        <div>
+          <span class="pth-sheet-col-label">What I did</span>
+          <p class="pth-sheet-desc">Worked within a five-person team to define product requirements and market positioning for an AI tool that flags employment-contract risk for Alberta SMB and HR audiences. Contributed to the go-to-market deck and a Python-based contract-generation prototype used to demo the concept.</p>
+          <div class="pth-sheet-outcome">Shows: <strong>PRD writing, GTM deck-building, positioning a technical AI product for a non-technical buyer.</strong></div>
+          <div class="pth-tagrow"><span class="pth-tag">Product Positioning</span><span class="pth-tag">PRD</span><span class="pth-tag">Generative AI</span><span class="pth-tag">Team of 5</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sheet 2 -->
+    <div class="pth-sheet">
+      <div class="pth-sheet-head"><span>Sheet 2 of 4</span><span>Account Growth &amp; Retention</span></div>
+      <div class="pth-sheet-body">
+        <div>
+          <div class="pth-sheet-context">Business Development Manager — Laser Equation Operations</div>
+          <h3 class="pth-sheet-title">The 8-Year Book</h3>
+          <div class="pth-sheet-org">Building and defending a $2.5M+ named-account pipeline, 2015–2023</div>
+        </div>
+        <div>
+          <span class="pth-sheet-col-label">What I did</span>
+          <p class="pth-sheet-desc">Built and managed a structured account plan across industrial and energy-sector named accounts. Ran renewal and share-improvement cycles, negotiated new and expansion agreements, and sold into buying committees spanning plant management through ownership and VP-level decision makers.</p>
+          <div class="pth-sheet-outcome">Shows: <strong>$2.5M+ active pipeline sustained over 8 years; multiple expansion agreements closed.</strong></div>
+          <div class="pth-tagrow"><span class="pth-tag">Account Planning</span><span class="pth-tag">Contract Renewal</span><span class="pth-tag">CRM / Salesforce</span><span class="pth-tag">Executive Relationships</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sheet 3 -->
+    <div class="pth-sheet">
+      <div class="pth-sheet-head"><span>Sheet 3 of 4</span><span>Stakeholder &amp; Market Intelligence</span></div>
+      <div class="pth-sheet-body">
+        <div>
+          <div class="pth-sheet-context">MBA Research Report — Sustainable Finance</div>
+          <h3 class="pth-sheet-title">TC Energy</h3>
+          <div class="pth-sheet-org">Indigenous partnership &amp; reputational risk strategy</div>
+        </div>
+        <div>
+          <span class="pth-sheet-col-label">What I did</span>
+          <p class="pth-sheet-desc">Analyzed the Coastal GasLink cost overrun and NGTL System equity partnership through an SASB / IFRS S2 materiality lens, mapping reputational, regulatory, and stakeholder risk across a $1B+ Indigenous equity structure.</p>
+          <div class="pth-sheet-outcome">Shows: <strong>Translating dense ESG and regulatory material into a stakeholder-ready strategic narrative.</strong></div>
+          <div class="pth-tagrow"><span class="pth-tag">Stakeholder Mapping</span><span class="pth-tag">ESG / SASB</span><span class="pth-tag">Risk Analysis</span><span class="pth-tag">Strategic Writing</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sheet 4 -->
+    <div class="pth-sheet">
+      <div class="pth-sheet-head"><span>Sheet 4 of 4</span><span>Data Storytelling &amp; Executive Comms</span></div>
+      <div class="pth-sheet-body">
+        <div>
+          <div class="pth-sheet-context">MBA Deliverable — Business of Oil &amp; Gas</div>
+          <h3 class="pth-sheet-title">Sturgeon Refinery</h3>
+          <div class="pth-sheet-org">Financial &amp; feasibility narrative, built for three audiences</div>
+        </div>
+        <div>
+          <span class="pth-sheet-col-label">What I did</span>
+          <p class="pth-sheet-desc">Built a four-slide executive presentation distilling Phase 1 mass balance and financial performance alongside Phase 2/3 feasibility, then adapted the same narrative into 60-, 45-, and 30-second speaker-note variants for different meeting lengths.</p>
+          <div class="pth-sheet-outcome">Shows: <strong>Same underlying data, three tuned delivery formats — built for how executives actually consume information.</strong></div>
+          <div class="pth-tagrow"><span class="pth-tag">Financial Modeling</span><span class="pth-tag">Executive Decks</span><span class="pth-tag">Narrative Design</span></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ================= EXPERIENCE ================= -->
+  <section class="pth-section pth-reveal">
+    <div class="pth-sec-head">
+      <h2 class="pth-sec-title">Experience</h2>
+      <div class="pth-sec-tag">Sheet 04 / Timeline</div>
+    </div>
+    <div class="pth-timeline">
+
+      <div class="pth-tl-item current">
+        <div class="pth-tl-dot"></div>
+        <div class="pth-tl-date">Jan 2026 — Apr 2027 (in progress)</div>
+        <div class="pth-tl-role">MBA, Global Energy Management &amp; Sustainable Development</div>
+        <div class="pth-tl-org">Haskayne School of Business, University of Calgary</div>
+      </div>
+
+      <div class="pth-tl-item current">
+        <div class="pth-tl-dot"></div>
+        <div class="pth-tl-date">2025 — Present</div>
+        <div class="pth-tl-role">Marketing Manager</div>
+        <div class="pth-tl-org">One Eye Industries — Calgary, AB</div>
+      </div>
+
+      <div class="pth-tl-item">
+        <div class="pth-tl-dot"></div>
+        <div class="pth-tl-date">2023 — 2024</div>
+        <div class="pth-tl-role">Sales Manager</div>
+        <div class="pth-tl-org">Aaron Machine Shop — Calgary, AB</div>
+      </div>
+
+      <div class="pth-tl-item">
+        <div class="pth-tl-dot"></div>
+        <div class="pth-tl-date">2015 — 2023</div>
+        <div class="pth-tl-role">Business Development Manager</div>
+        <div class="pth-tl-org">Laser Equation Operations — Calgary, AB</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= EDUCATION ================= -->
+  <section class="pth-section pth-reveal">
+    <div class="pth-sec-head">
+      <h2 class="pth-sec-title">Education</h2>
+      <div class="pth-sec-tag">Sheet 05 / Credentials</div>
+    </div>
+    <div class="pth-edu-grid">
+      <div class="pth-edu-card">
+        <div class="pth-edu-deg">MBA — GEMS Specialization</div>
+        <div class="pth-edu-org">Haskayne School of Business, University of Calgary</div>
+        <div class="pth-edu-meta">Expected April 2027</div>
+      </div>
+      <div class="pth-edu-card">
+        <div class="pth-edu-deg">Bachelor of Commerce</div>
+        <div class="pth-edu-org">Marketing &amp; Technology Management — Athabasca University</div>
+        <div class="pth-edu-meta">Undergraduate Degree</div>
+      </div>
+      <div class="pth-edu-card">
+        <div class="pth-edu-deg">Product &amp; Product Marketing Certifications</div>
+        <div class="pth-edu-org">Product School &amp; Product Marketing Alliance</div>
+        <div class="pth-edu-meta">Professional Certification</div>
+      </div>
+      <div class="pth-edu-card">
+        <div class="pth-edu-deg">Project Management Extension Certificate</div>
+        <div class="pth-edu-org">Mount Royal University</div>
+        <div class="pth-edu-meta">Professional Certification</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <section class="pth-section pth-reveal pth-footer">
+    <div class="pth-footer-inner">
+      <div>
+        <h2 class="pth-footer-title">Let's talk shop.</h2>
+        <p class="pth-footer-sub">Open to product marketing, commercial strategy, and account growth roles — energy, industrial, or otherwise.</p>
+      </div>
+      <div class="pth-footer-links">
+        <a href="mailto:paulhughes925@gmail.com">paulhughes925@gmail.com</a>
+        <a href="tel:14039660297">403.966.0297</a>
+        <a href="https://www.linkedin.com/in/paul-t-hughes-502290201/" target="_blank" rel="noopener">linkedin.com/in/paul-t-hughes</a>
+        <span style="color:var(--paper-dim);">Calgary, AB</span>
+      </div>
+    </div>
+    <div class="pth-endmark">— End of Sheet · Paul T. Hughes · 2026 —</div>
+  </section>
+
+</div>
+
+<script>
+  (function(){
+    var els = document.querySelectorAll('.pth-reveal');
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.classList.add('pth-in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      els.forEach(function(el){ io.observe(el); });
+    } else {
+      els.forEach(function(el){ el.classList.add('pth-in'); });
+    }
+  })();
+</script>
+</body>
+</html>

@@ -209,30 +209,77 @@
     text-align:right;
   }
 
-  /* ---------- about ---------- */
-  .pth-about-grid{ display:grid; grid-template-columns: 1.3fr 1fr; gap:56px; align-items:start; }
-  .pth-about-text p{ font-size:17px; color:var(--paper); margin:0 0 18px 0; }
-  .pth-about-text p .hl{ color:var(--cyan); }
-  .pth-about-note{
-    font-family:var(--font-mono); font-size:12px; color:var(--paper-dim);
-    border-left:2px solid var(--cyan-dim); padding-left:16px; line-height:1.7;
-  }
+  <!-- ================= ABOUT ================= -->
+  <section class="pth-section pth-reveal" id="about">
+    <div class="pth-sec-head">
+      <h2 class="pth-sec-title">Thesis</h2>
+      <div class="pth-sec-tag">Sheet 01 / About</div>
+    </div>
+    <div class="pth-about-grid">
+      <div class="pth-about-text">
+        <p>Most of my career has been built inside Western Canada’s industrial engine — selling custom manufacturing solutions, heavy fabrication, and technical products where buying committees stretch from the <span class="hl">plant floor to the executive suite</span>. That work taught me how complex, highly engineered solutions actually earn trust: by grounding commercial strategy in operational reality.</p>
+        <p>My Haskayne MBA is turning that frontline commercial instinct into a repeatable framework — combining advanced market analysis with tools like <span class="hl">Tableau</span> for data-driven storytelling and <span class="hl">generative AI</span> for technical product positioning.</p>
+        <p>This portfolio sits directly in that intersection: bridging 10+ years of real-world energy and industrial commercial execution with MBA strategic frameworks across market positioning, energy management, and account growth.</p>
+      </div>
+      <div class="pth-about-note">
+        <strong>OPERATING PRINCIPLE:</strong><br/>
+        Technical credibility opens the door; commercial clarity closes the deal. Whether negotiating multi-year industrial supply agreements or modeling midstream energy transitions, the goal is always translating operational complexity into executive confidence.
+      </div>
+    </div>
+  </section>
 
-  /* ---------- capabilities legend ---------- */
-  .pth-legend{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
-    background:var(--blue-line);
-    border:1px solid var(--blue-line);
-  }
-  .pth-legend-item{
-    background:var(--blue-deep); padding:24px 22px; min-height:150px;
-    display:flex; flex-direction:column; gap:14px;
-  }
-  .pth-legend-num{ font-family:var(--font-mono); font-size:11px; color:var(--cyan-dim); }
-  .pth-legend-icon{ width:30px; height:30px; }
-  .pth-legend-icon svg{ width:100%; height:100%; }
-  .pth-legend-title{ font-family:var(--font-display); font-weight:700; font-size:18px; text-transform:uppercase; color:var(--paper); letter-spacing:.01em; }
-  .pth-legend-sub{ font-size:13px; color:var(--paper-dim); }
+  <!-- ================= CAPABILITIES ================= -->
+  <section class="pth-section pth-reveal">
+    <div class="pth-sec-head">
+      <h2 class="pth-sec-title">Capabilities</h2>
+      <div class="pth-sec-tag">Sheet 02 / Legend</div>
+    </div>
+    <div class="pth-legend">
+
+      <div class="pth-legend-item">
+        <div class="pth-legend-num">A</div>
+        <div class="pth-legend-icon"><svg viewBox="0 0 30 30"><path d="M4 22 L14 10 L20 16 L26 6" stroke="#6EC6FF" stroke-width="1.6" fill="none"/><circle cx="26" cy="6" r="2.2" fill="#F2A93B"/></svg></div>
+        <div class="pth-legend-title">Positioning &amp; Messaging</div>
+        <div class="pth-legend-sub">Translating technical products into value propositions a buying committee acts on.</div>
+      </div>
+
+      <div class="pth-legend-item">
+        <div class="pth-legend-num">B</div>
+        <div class="pth-legend-icon"><svg viewBox="0 0 30 30"><rect x="4" y="14" width="6" height="10" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><rect x="12" y="8" width="6" height="16" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><rect x="20" y="4" width="6" height="20" fill="none" stroke="#6EC6FF" stroke-width="1.6"/></svg></div>
+        <div class="pth-legend-title">Pipeline &amp; Account Strategy</div>
+        <div class="pth-legend-sub">Building and defending named-account pipelines through renewals and expansion.</div>
+      </div>
+
+      <div class="pth-legend-item">
+        <div class="pth-legend-num">C</div>
+        <div class="pth-legend-icon"><svg viewBox="0 0 30 30"><circle cx="15" cy="15" r="4" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><circle cx="6" cy="6" r="3" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><circle cx="24" cy="6" r="3" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><circle cx="6" cy="24" r="3" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><circle cx="24" cy="24" r="3" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><path d="M15 11 L8 8 M19 11 L22 8 M15 19 L8 22 M19 19 L22 22" stroke="#6EC6FF" stroke-width="1.2"/></svg></div>
+        <div class="pth-legend-title">Stakeholder Intelligence</div>
+        <div class="pth-legend-sub">Mapping regulatory, ESG, and organizational risk into a strategy stakeholders trust.</div>
+      </div>
+
+      <div class="pth-legend-item">
+        <div class="pth-legend-num">D</div>
+        <div class="pth-legend-icon"><svg viewBox="0 0 30 30"><path d="M4 24 L4 4 M4 24 L26 24" stroke="#6EC6FF" stroke-width="1.6" fill="none"/><path d="M8 20 L13 12 L18 16 L24 6" stroke="#F2A93B" stroke-width="1.8" fill="none"/></svg></div>
+        <div class="pth-legend-title">Data &amp; Financial Storytelling</div>
+        <div class="pth-legend-sub">Turning account metrics, Tableau dashboards, and feasibility models into clear decisions.</div>
+      </div>
+
+      <div class="pth-legend-item">
+        <div class="pth-legend-num">E</div>
+        <div class="pth-legend-icon"><svg viewBox="0 0 30 30"><rect x="4" y="4" width="22" height="22" rx="2" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><path d="M4 12 L26 12 M4 20 L26 20 M12 4 L12 26" stroke="#6EC6FF" stroke-width="1"/></svg></div>
+        <div class="pth-legend-title">Cross-Functional GTM</div>
+        <div class="pth-legend-sub">Coordinating sales, ops, and product to move complex, multi-stakeholder deals forward.</div>
+      </div>
+
+      <div class="pth-legend-item">
+        <div class="pth-legend-num">F</div>
+        <div class="pth-legend-icon"><svg viewBox="0 0 30 30"><path d="M15 3 L26 9 L26 21 L15 27 L4 21 L4 9 Z" fill="none" stroke="#6EC6FF" stroke-width="1.6"/><circle cx="15" cy="15" r="4" fill="none" stroke="#F2A93B" stroke-width="1.6"/></svg></div>
+        <div class="pth-legend-title">AI-Enabled Product Thinking</div>
+        <div class="pth-legend-sub">Hands-on with generative AI tooling for prototyping and positioning new product concepts.</div>
+      </div>
+
+    </div>
+  </section>
 
   /* ---------- case studies ---------- */
   .pth-sheet{
@@ -471,7 +518,7 @@
 
     <!-- Sheet 1 -->
     <div class="pth-sheet">
-      <div class="pth-sheet-head"><span>Sheet 1 of 4</span><span>GTM &amp; Positioning</span></div>
+      <div class="pth-sheet-head"><span>Sheet 1 of 6</span><span>GTM &amp; Positioning</span></div>
       <div class="pth-sheet-body">
         <div>
           <div class="pth-sheet-context">MBA Team Project — ENTI 633, Generative AI for MBAs</div>
@@ -489,7 +536,7 @@
 
     <!-- Sheet 2 -->
     <div class="pth-sheet">
-      <div class="pth-sheet-head"><span>Sheet 2 of 4</span><span>Account Growth &amp; Retention</span></div>
+      <div class="pth-sheet-head"><span>Sheet 2 of 6</span><span>Account Growth &amp; Retention</span></div>
       <div class="pth-sheet-body">
         <div>
           <div class="pth-sheet-context">Business Development Manager — Laser Equation Operations</div>
@@ -507,7 +554,7 @@
 
     <!-- Sheet 3 -->
     <div class="pth-sheet">
-      <div class="pth-sheet-head"><span>Sheet 3 of 4</span><span>Stakeholder &amp; Market Intelligence</span></div>
+      <div class="pth-sheet-head"><span>Sheet 3 of 6</span><span>Stakeholder &amp; Market Intelligence</span></div>
       <div class="pth-sheet-body">
         <div>
           <div class="pth-sheet-context">MBA Research Report — Sustainable Finance</div>
@@ -525,7 +572,7 @@
 
     <!-- Sheet 4 -->
     <div class="pth-sheet">
-      <div class="pth-sheet-head"><span>Sheet 4 of 5</span><span>Data Storytelling &amp; Executive Comms</span></div>
+      <div class="pth-sheet-head"><span>Sheet 4 of 6</span><span>Data Storytelling &amp; Executive Comms</span></div>
       <div class="pth-sheet-body">
         <div>
           <div class="pth-sheet-context">MBA Deliverable — Business of Oil &amp; Gas</div>
@@ -542,7 +589,7 @@
     </div>
     <!-- Sheet 5 -->
     <div class="pth-sheet">
-      <div class="pth-sheet-head"><span>Sheet 5 of 5</span><span>Go-to-Market &amp; Marketing Communications</span></div>
+      <div class="pth-sheet-head"><span>Sheet 5 of 6</span><span>Go-to-Market &amp; Marketing Communications</span></div>
       <div class="pth-sheet-body">
         <div>
           <div class="pth-sheet-context">MBA Team Project — MGST 635, Marketing Communications</div>
@@ -559,42 +606,36 @@
     </div>
   </section>
  <!-- Sheet 6 -->
-  <!-- Case Study Header / Hero -->
-<header class="case-study-header">
-  <span class="project-tag">MBA Strategy & Sustainable Development</span>
-  <h1>Nutrien Ltd. — Corporate Sustainability & Backcasting Strategy</h1>
-  <p class="lead">Applying The Natural Step (TNS) framework and 2035 backcasting models to align decarbonization, mine automation, and CCUS with enterprise value creation.</p>
-</header>
+    <div class="pth-sheet">
+      <div class="pth-sheet-head"><span>Sheet 6 of 6</span><span>Corporate Sustainability &amp; Backcasting</span></div>
+      <div class="pth-sheet-body">
+        <div>
+          <div class="pth-sheet-context">MBA Team Project — Global Energy Management &amp; Sustainable Development</div>
+          <h3 class="pth-sheet-title">Nutrien Ltd. (TNS Strategy)</h3>
+          <div class="pth-sheet-org">Transitioning the world’s largest crop-input producer toward 2035 Strategic Proactivity</div>
+          <div class="pth-tagrow" style="margin-top:20px;">
+            <a class="pth-btn pth-btn--ghost" href="Nutrien_Sustainability_Case_Study.pdf" target="_blank" rel="noopener" style="padding:8px 14px; font-size:11.5px;">Open Full PDF ↗</a>
+          </div>
+        </div>
+        <div>
+          <span class="pth-sheet-col-label">What I did</span>
+          <p class="pth-sheet-desc">Evaluated Nutrien Ltd. (TSX: NTR) using Strategic Life Cycle Assessment (SLCA), The Natural Step (TNS) Four System Conditions, and the Perrott Sustainability Matrix. Identified four material operational hotspots (nitrogen fossil feedstock, nutrient runoff, tailings management, and worker safety) and built a sequenced 2027–2035 capital allocation roadmap covering low-carbon ammonia/CCUS scale-up, Zero Harm safety audits, mine automation past 65%, and precision agriculture.</p>
+          
+          <!-- Embedded Slide Deck -->
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid var(--blue-line); margin-bottom: 18px; background: var(--blue-mid);">
+            <iframe 
+              src="Nutrien_Sustainability_Case_Study.pdf" 
+              title="Nutrien Corporate Sustainability Presentation"
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+              allowfullscreen>
+            </iframe>
+          </div>
 
-<!-- PDF Slides Viewer (Replaces single images) -->
-<section class="case-study-media">
-  <div class="pdf-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-    <iframe 
-      src="Nutrien_Sustainability_Case_Study.pdf" 
-      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
-      allowfullscreen>
-    </iframe>
-  </div>
-</section>
-
-<!-- Case Study Breakdown -->
-<section class="case-study-body">
-  <h2>Executive Summary</h2>
-  <p>Evaluated Nutrien Ltd. (TSX: NTR) using Strategic Life Cycle Assessment (SLCA) and backcasting methodology to map a transition path from compliance toward 2035 Strategic Proactivity.</p>
-
-  <h2>Frameworks & Methodology</h2>
-  <ul>
-    <li><strong>The Natural Step (TNS):</strong> Assessed operations across all 4 System Conditions[cite: 2].</li>
-    <li><strong>Perrott Matrix:</strong> Mapped sustainability progress across Human, Economic, and Environmental dimensions[cite: 2].</li>
-    <li><strong>ABCD Backcasting:</strong> Developed a sequenced capital allocation roadmap from 2027 to 2035[cite: 2].</li>
-  </ul>
-
-  <h2>Core Deliverables</h2>
-  <ul>
-    <li>Identified 4 material hotspots: nitrogen fossil feedstock, nutrient runoff, tailings management, and worker safety[cite: 2].</li>
-    <li>Designed a 4-pillar initiative roadmap covering Low-Carbon Ammonia/CCUS scale-up, Zero Harm safety audits, mine automation past 65%, and precision agriculture[cite: 2].</li>
-  </ul>
-</section>
+          <div class="pth-sheet-outcome">Shows: <strong>Bridging ESG materiality, capital allocation, and operational risk into a board-ready 2035 roadmap.</strong></div>
+          <div class="pth-tagrow"><span class="pth-tag">The Natural Step (TNS)</span><span class="pth-tag">Backcasting</span><span class="pth-tag">CCUS &amp; Decarbonization</span><span class="pth-tag">Capital Allocation</span></div>
+        </div>
+      </div>
+    </div>
 
   <!-- ================= EXPERIENCE ================= -->
   <section class="pth-section pth-reveal">
